@@ -21,21 +21,20 @@ class _userdetailsState extends State<userdetails> {
   TextEditingController phoneno = TextEditingController();
   method ref = method();
 
+ Future<bool> _0nwillScope() async {
+    return (await Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+            builder: (context) => bottomnavibar(selectedindex: 3)),
+        (route) => false));
 
-  _0nwillScope()async{
-    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>bottomnavibar(selectedindex: 3)), (route) => false);
-    return false;
+
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: _0nwillScope(),
-
+      onWillPop: _0nwillScope,
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -44,7 +43,8 @@ class _userdetailsState extends State<userdetails> {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => bottomnavibar(selectedindex: 3)),
+                          builder: (context) =>
+                              bottomnavibar(selectedindex: 3)),
                       (route) => false);
                 });
               },
@@ -55,7 +55,7 @@ class _userdetailsState extends State<userdetails> {
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
-            colors: [
+            colors: const [
               Colors.black,
               Colors.brown,
               Colors.redAccent,
@@ -81,7 +81,6 @@ class _userdetailsState extends State<userdetails> {
                       return ListView.builder(
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, i) {
-                            final item = snapshot.data?[i];
                             ref.showuserdetails();
                             print("id${snapshot.data![i].id}");
 
@@ -105,7 +104,8 @@ class _userdetailsState extends State<userdetails> {
                                     ),
                                   ),
                                   subtitle: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       const Divider(
                                         color: Colors.black,
@@ -171,12 +171,14 @@ class _userdetailsState extends State<userdetails> {
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           userupdate(
-                                                            snapshot.data![i].Name
-                                                                .toString(),
-                                                            snapshot.data![i].Mail
+                                                            snapshot
+                                                                .data![i].Name
                                                                 .toString(),
                                                             snapshot
-                                                                .data![i].password
+                                                                .data![i].Mail
+                                                                .toString(),
+                                                            snapshot.data![i]
+                                                                .password
                                                                 .toString(),
                                                             snapshot.data![i]
                                                                 .Phonenumber
@@ -205,8 +207,8 @@ class _userdetailsState extends State<userdetails> {
                     } else {
                       return Center(
                         child: Column(
-                          children: [
-                            const CircularProgressIndicator(),
+                          children: const [
+                            CircularProgressIndicator(),
                           ],
                         ),
                       );
